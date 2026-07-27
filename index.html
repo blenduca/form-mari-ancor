@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cadastre-se e faça o download dos dois primeiros capítulos.</title>
+  <meta name="description"
+    content="Vagas limitadas para garantir uma experiência de qualidade e interação direta. Inscreva-se agora." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      min-height: 100vh;
+      background-color: #1aaeaa;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 16px;
+    }
+
+    .page-wrapper {
+      width: 100%;
+      max-width: 680px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .page-header {
+      text-align: center;
+      color: #ffffff;
+    }
+
+    .page-header h1 {
+      font-size: clamp(2rem, 5vw, 2.8rem);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 12px;
+    }
+
+    .page-header p {
+      font-size: 1rem;
+      font-weight: 400;
+      opacity: 0.9;
+      max-width: 460px;
+      margin: 0 auto;
+      line-height: 1.5;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 40px 44px 44px;
+      width: 100%;
+      box-shadow: 0 8px 40px rgba(0, 0, 0, 0.12);
+    }
+
+    .card h2 {
+      font-size: 1.55rem;
+      font-weight: 700;
+      color: #1a1a2e;
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: #374151;
+      margin-bottom: 8px;
+    }
+
+    .form-group label .required {
+      color: #e05f3e;
+      margin-left: 2px;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1.5px solid #d1d5db;
+      border-radius: 8px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      color: #111827;
+      background: #ffffff;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      outline: none;
+    }
+
+    .form-group input::placeholder {
+      color: #9ca3af;
+    }
+
+    .form-group input:focus {
+      border-color: #1aaeaa;
+      box-shadow: 0 0 0 3px rgba(26, 174, 170, 0.15);
+    }
+
+    .form-group input.error {
+      border-color: #ef4444;
+      box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.12);
+    }
+
+    .error-msg {
+      font-size: 0.78rem;
+      color: #ef4444;
+      margin-top: 5px;
+      display: none;
+    }
+
+    .btn-submit {
+      display: block;
+      width: 100%;
+      margin-top: 32px;
+      padding: 17px 24px;
+      background: linear-gradient(135deg, #e8643a 0%, #d95a2e 100%);
+      color: #ffffff;
+      font-family: 'Inter', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      letter-spacing: 0.02em;
+      transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+      box-shadow: 0 4px 18px rgba(232, 100, 58, 0.35);
+    }
+
+    .btn-submit:hover:not(:disabled) {
+      background: linear-gradient(135deg, #d95a2e 0%, #c44e24 100%);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 24px rgba(232, 100, 58, 0.45);
+    }
+
+    .btn-submit:active:not(:disabled) {
+      transform: translateY(0);
+    }
+
+    .btn-submit:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+
+    .feedback-box {
+      display: none;
+      text-align: center;
+      padding: 20px;
+      border-radius: 10px;
+      margin-top: 24px;
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+
+    .feedback-box.success {
+      background: #ecfdf5;
+      color: #065f46;
+      border: 1.5px solid #6ee7b7;
+    }
+
+    .feedback-box.error-global {
+      background: #fef2f2;
+      color: #991b1b;
+      border: 1.5px solid #fca5a5;
+    }
+
+    .spinner {
+      display: inline-block;
+      width: 18px;
+      height: 18px;
+      border: 2.5px solid rgba(255, 255, 255, 0.4);
+      border-top-color: #ffffff;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      vertical-align: middle;
+      margin-right: 8px;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    @media (max-width: 520px) {
+      .card {
+        padding: 28px 20px 32px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page-wrapper">
+    <header class="page-header">
+      <h1>Cadastre-se e faça o download dos dois primeiros capítulos</h1>
+
+    </header>
+    <div class="card">
+      <h2>Inscreva-se</h2>
+      <form id="inscricaoForm" novalidate>
+        <div class="form-group">
+          <label for="nomeCompleto">Nome Completo <span class="required">*</span></label>
+          <input type="text" id="nomeCompleto" name="nomeCompleto" placeholder="Digite seu nome completo" required
+            autocomplete="name" />
+          <span class="error-msg" id="nomeCompleto-error">Por favor, informe seu nome completo.</span>
+        </div>
+        <div class="form-group">
+          <label for="email">Email <span class="required">*</span></label>
+          <input type="email" id="email" name="email" placeholder="seu@email.com" required autocomplete="email" />
+          <span class="error-msg" id="email-error">Por favor, informe um e-mail válido.</span>
+        </div>
+        <div class="form-group">
+          <label for="telefone">Telefone <span class="required">*</span></label>
+          <input type="tel" id="telefone" name="telefone" placeholder="(11) 99999-9999" required autocomplete="tel"
+            maxlength="15" />
+          <span class="error-msg" id="telefone-error">Por favor, informe seu telefone.</span>
+        </div>
+        <div class="form-group">
+          <label for="idade">Idade <span class="required">*</span></label>
+          <input type="number" id="idade" name="idade" placeholder="Sua idade" required min="1" max="120" />
+          <span class="error-msg" id="idade-error">Por favor, informe sua idade.</span>
+        </div>
+        <div class="form-group">
+          <label for="ocupacao">Ocupação Atual <span class="required">*</span></label>
+          <input type="text" id="ocupacao" name="ocupacao" placeholder="Ex: Diretor de Marketing" required />
+          <span class="error-msg" id="ocupacao-error">Por favor, informe sua ocupação atual.</span>
+        </div>
+        <div class="form-group">
+          <label for="segmento">Segmento de Mercado <span class="required">*</span></label>
+          <input type="text" id="segmento" name="segmento" placeholder="Ex: Tecnologia, Finanças, Saúde" required />
+          <span class="error-msg" id="segmento-error">Por favor, informe seu segmento de mercado.</span>
+        </div>
+        <div class="feedback-box" id="feedbackBox"></div>
+        <button type="submit" class="btn-submit" id="submitBtn">Inscreva-se</button>
+      </form>
+    </div>
+  </div>
+  <script>
+    const WEBHOOK_URL = 'https://automacao.bagents.cloud/webhook/0354f6a7-b259-474c-a075-22742a9f1c23';
+    const telefoneInput = document.getElementById('telefone');
+    telefoneInput.addEventListener('input', function () {
+      let v = this.value.replace(/\D/g, '').substring(0, 11);
+      if (v.length > 10) { v = v.replace(/^(\d{2})(\d{5})(\d{4})$/, '($1) $2-$3'); }
+      else if (v.length > 6) { v = v.replace(/^(\d{2})(\d{4})(\d{0,4})$/, '($1) $2-$3'); }
+      else if (v.length > 2) { v = v.replace(/^(\d{2})(\d{0,5})$/, '($1) $2'); }
+      else { v = v.replace(/^(\d{0,2})$/, v.length > 0 ? '($1' : ''); }
+      this.value = v;
+    });
+    function validateField(id, validFn) {
+      const input = document.getElementById(id);
+      const errorEl = document.getElementById(id + '-error');
+      const ok = validFn(input.value.trim());
+      input.classList.toggle('error', !ok);
+      errorEl.style.display = ok ? 'none' : 'block';
+      return ok;
+    }
+    function isNotEmpty(v) { return v.length > 0; }
+    function isValidEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
+    function isValidPhone(v) { return v.replace(/\D/g, '').length >= 10; }
+    function isValidAge(v) { const n = parseInt(v, 10); return !isNaN(n) && n >= 1 && n <= 120; }
+    ['nomeCompleto', 'email', 'telefone', 'idade', 'ocupacao', 'segmento'].forEach(id => {
+      document.getElementById(id).addEventListener('blur', () => runValidation());
+    });
+    function runValidation() {
+      const v1 = validateField('nomeCompleto', isNotEmpty);
+      const v2 = validateField('email', isValidEmail);
+      const v3 = validateField('telefone', isValidPhone);
+      const v4 = validateField('idade', isValidAge);
+      const v5 = validateField('ocupacao', isNotEmpty);
+      const v6 = validateField('segmento', isNotEmpty);
+      return v1 && v2 && v3 && v4 && v5 && v6;
+    }
+    document.getElementById('inscricaoForm').addEventListener('submit', async function (e) {
+      e.preventDefault();
+      if (!runValidation()) return;
+      const btn = document.getElementById('submitBtn');
+      const feedbackBox = document.getElementById('feedbackBox');
+      btn.disabled = true;
+      btn.innerHTML = '<span class="spinner"></span> Enviando...';
+      feedbackBox.style.display = 'none';
+      feedbackBox.className = 'feedback-box';
+      const payload = {
+        nomeCompleto: document.getElementById('nomeCompleto').value.trim(),
+        email: document.getElementById('email').value.trim(),
+        telefone: document.getElementById('telefone').value.trim(),
+        idade: parseInt(document.getElementById('idade').value.trim(), 10),
+        ocupacao: document.getElementById('ocupacao').value.trim(),
+        segmento: document.getElementById('segmento').value.trim(),
+        timestamp: new Date().toISOString(),
+      };
+      try {
+        const response = await fetch(WEBHOOK_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+        if (response.ok) {
+          feedbackBox.textContent = '✅ Aplicação confirmada! O download do livro iniciará em instantes...';
+          feedbackBox.classList.add('success');
+          feedbackBox.style.display = 'block';
+          this.reset();
+          btn.innerHTML = 'Inscreva-se';
+          // Dispara o download automático do PDF
+          const link = document.createElement('a');
+          link.href = 'Livro _A Primeira Segunda Feira Amostra.pdf';
+          link.download = 'Livro _A Primeira Segunda Feira Amostra.pdf';
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+        } else { throw new Error('Erro: ' + response.status); }
+      } catch (err) {
+        feedbackBox.textContent = '❌ Ocorreu um erro ao enviar. Por favor, tente novamente.';
+        feedbackBox.classList.add('error-global');
+        feedbackBox.style.display = 'block';
+        btn.innerHTML = 'Inscreva-se';
+      } finally { btn.disabled = false; }
+    });
+  </script>
+</body>
+
+</html>
